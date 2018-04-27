@@ -1,0 +1,10 @@
+.myTicker {
+    background-color: #fff;
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 99999999999;
+    box-shadow: 0px 4px 17px #0000002b;
+    padding: 16px;
+    margin: 0px;
+}

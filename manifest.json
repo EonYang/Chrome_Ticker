@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+
+    "name": "Chrome Ticker",
+    "description": "This extension shows BTC ticker while you hovering it",
+    "version": "1.0",
+    "commands": {
+        "save": {
+            "suggested_key": {
+                "default": "Alt+Z"
+            },
+            "description": "show btc price"
+        }
+    },
+    "permissions": [
+        "<all_urls>",
+        "tabs"
+    ],
+    "background": {
+        "scripts": ["jquery-3.3.1.min.js", "background.js"]
+    },
+	"content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["jquery-3.3.1.min.js", "content.js"],
+	  "css":["content.css"]
+    }
+  ],
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    }
+}
