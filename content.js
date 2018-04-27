@@ -1,10 +1,17 @@
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         console.log('msg got');
-        addTickerToDom(request.message);
+        addTickerToDom(request.message.tickers);
+		addTimeAgo(request.message.timePassed);
         setTimeout(clearTickerDom, 2000);
     }
 );
+
+var addTimeAgo = (time) => {
+	$('<p></p>').text(`Last refresh: ${time}' ago.`).appendTo($(".myTicker"));
+};
+
+
 
 var addTickerToDom = (tickers) => {
     console.log(tickers);

@@ -1,4 +1,5 @@
 let latestTickers = [];
+let lastRefreshTime ;
 
 let url = 'https://api.bitfinex.com/v1/pubticker/';
 
@@ -22,7 +23,12 @@ let favors = {
 
 chrome.commands.onCommand.addListener(function(command) {
     if (command === "save") {
-        sendMsgToContent(latestTickers);
+		let timePassed = Math.floor((new Date().getTime() - lastRefreshTime)/1000);
+			let message = {
+				timePassed : timePassed,
+				tickers: latestTickers
+			};
+        sendMsgToContent(message);
     }
 });
 
@@ -60,6 +66,7 @@ var loadTicker = (coin) => {
                 "name": coin.name,
                 "mid": result.mid
             };
+			lastRefreshTime = new Date().getTime();
             console.log(latestTickers);
         },
         error: (error) => console.log(error)
